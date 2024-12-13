@@ -34,7 +34,7 @@ function getRectangleArea(width, height) {
  *   0    => 0
  */
 function getCircleCircumference(radius) {
-  return 2 *  Math.PI * radius;
+  return 2 * Math.PI * radius;
 }
 
 /**
@@ -50,7 +50,7 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  return (value1 / 2) + (value2 / 2);
+  return value1 / 2 + value2 / 2;
 }
 
 /**
@@ -69,7 +69,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 }
 
 /**
@@ -179,7 +179,8 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
+  const tenPow = 10 ** pow;
+  return Math.round(num / tenPow) * tenPow;
 }
 
 /**
@@ -203,8 +204,8 @@ function isPrime(n) {
   if (n <= 1) return false;
   if (n <= 3) return true;
   if (n % 2 === 0 || n % 3 === 0) return false;
-  for (let i = 5; i * i <= n; i += 6){
-      if (n % i === 0 || n % (i + 2) === 0) return false;
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) return false;
   }
   return true;
 }
@@ -225,7 +226,7 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-  return isNaN(Number(value)) ? def : Number(value);
+  return Number.isNaN(Number(value)) ? def : Number(value);
 }
 
 /**
@@ -240,7 +241,7 @@ function toNumber(value, def) {
  *   0  => 0
  */
 function getCube(num) {
-  return Math.pow(num, 3);
+  return num ** 3;
 }
 
 /**
@@ -259,8 +260,10 @@ function getCube(num) {
 function getFibonacciNumber(index) {
   if (index === 0) return 0;
   if (index === 1) return 1;
-  let a = 0, b = 1, fib = 0;
-  for (let i = 2; i <= index; i++) {
+  let a = 0;
+  let b = 1;
+  let fib = 0;
+  for (let i = 2; i <= index; i += 1) {
     fib = a + b;
     a = b;
     b = fib;
@@ -295,7 +298,11 @@ function getSumToN(n) {
  *   5   => 5  // 5
  */
 function getSumOfDigits(num) {
-  return num.toString().split('').map(Number).reduce((sum, digit) => sum + digit, 0);
+  return num
+    .toString()
+    .split('')
+    .map(Number)
+    .reduce((sum, digit) => sum + digit, 0);
 }
 
 /**
@@ -311,7 +318,7 @@ function getSumOfDigits(num) {
  */
 function isPowerOfTwo(num) {
   if (num <= 0) return false;
-  return (num & (num - 1)) === 0;
+  return Math.log2(num) % 1 === 0;
 }
 
 /**
@@ -447,7 +454,7 @@ function isInteger(number) {
  * 'abcdefgh'      => NaN
  */
 function getFloatOnString(str) {
-  return parseFloat(str);
+  return Number.parseFloat(str);
 }
 
 /**
@@ -465,7 +472,7 @@ function getFloatOnString(str) {
  * '10', 8              => 8
  */
 function getIntegerOnString(str, base) {
-  return parseInt(str, base);
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -600,7 +607,7 @@ function getRandomInteger(min, max) {
  * 3, 4 => 5
  */
 function getHypotenuse(a, b) {
-   return Math.hypot(a, b);
+  return Math.hypot(a, b);
 }
 
 /**
